@@ -24,22 +24,23 @@ import javax.xml.bind.annotation.XmlType;
     "laptopImageURL",
     "laptopDescription",
     "laptopDomain"
+   
 })
 public class LaptopDTO implements Serializable {
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopId;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopBrand;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopNameInfo;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopPrice;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopImageURL;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopDescription;
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private String laptopDomain;
 
     public LaptopDTO() {

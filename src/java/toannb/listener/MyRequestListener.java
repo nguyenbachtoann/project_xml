@@ -30,11 +30,8 @@ public class MyRequestListener implements ServletRequestListener {
         try {
             LapTopDAO laptopDAO = new LapTopDAO();
 
-            LaptopDTOList laptopList = laptopDAO.getTop2TrendingBrand();
             List<String> listBrand = laptopDAO.getLaptopBrand();
-            String xml = XMLUtilities.marshallingToString(laptopList);
-
-            sre.getServletRequest().setAttribute("LAPTOPLIST", xml);
+  
             sre.getServletRequest().setAttribute("BRANDLIST", listBrand);
         } catch (Exception e) {
         }

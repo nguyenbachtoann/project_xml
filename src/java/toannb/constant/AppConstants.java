@@ -21,7 +21,7 @@ public class AppConstants {
     public static final String LTXT_PAGE_BEGIN_TAG = "<div class=\"box_paging\">";
     public static final String LTXT_PAGE_END_TAG = "</div>";
 
-    //An Khang area
+    //laptopprocom area
     public static final String LTPC_HOME_URL = "https://laptopprocom.vn/san-pham/laptop/135.html";
     public static final String LTPC_HOME_BASE_URL = "https://laptopprocom.vn/";
     public static final String LTPC_BEGIN_TAG = "<ul class=\"pro-ct\">";
@@ -35,6 +35,10 @@ public class AppConstants {
     public static final String LAPTOP_IMAGE_PREFIX = "laptop_";
     public static final String LAPTOP_IMAGE_FORMAT = ".png";
 
+    //laptopmag top brand
+    public static final String LTM_HOME_URL = "https://www.laptopmag.com/articles/laptop-brand-ratings";
+    public static final String LTM_BEGIN_TAG = "<div class=\"tabContent reviewContent articleContent\">";
+    public static final String LTM_END_TAG = "</ul>";
 
-
+    public static final String LTM_DB_TABLE = "tbl_LaptopBrandTrending";
 }

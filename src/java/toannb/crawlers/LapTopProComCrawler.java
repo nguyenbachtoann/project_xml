@@ -81,7 +81,7 @@ public class LapTopProComCrawler {
         List<LaptopDTO> listProduct = new ArrayList<>();
 
         try {
-            String laptopNameInfo = "", laptopPrice = "", laptopImg = "", laptopBrand = "", laptopDescription = "";
+            String laptopId = "", laptopNameInfo = "", laptopPrice = "", laptopImg = "", laptopBrand = "", laptopDescription = "";
 
             if (reader != null) {
 
@@ -126,7 +126,7 @@ public class LapTopProComCrawler {
                                     if (laptopPrice.contains("VNĐ")) {
                                         laptopPrice = laptopPrice.replaceAll("VNĐ", "");
                                     }
-                                    LaptopDTO dto = new LaptopDTO(laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTPC_HOME_BASE_URL);
+                                    LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTPC_HOME_BASE_URL);
                                     listProduct.add(dto);
                                 }
 

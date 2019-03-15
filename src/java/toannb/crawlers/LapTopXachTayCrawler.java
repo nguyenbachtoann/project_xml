@@ -81,7 +81,7 @@ public class LapTopXachTayCrawler {
         int i = 1;
         List<LaptopDTO> listProduct = new ArrayList<>();
         try {
-            String laptopNameInfo = "", laptopPrice = "", laptopImg = "", laptopBrand = "", laptopDescription = "";
+            String laptopId = "", laptopNameInfo = "", laptopPrice = "", laptopImg = "", laptopBrand = "", laptopDescription = "";
             if (reader != null) {
 
                 while (reader.hasNext()) {
@@ -129,7 +129,7 @@ public class LapTopXachTayCrawler {
                                 if (reader.isCharacters()) {
                                     if (!reader.getText().contains("Trả góp")) {
                                         laptopDescription = reader.getText();
-                                        LaptopDTO dto = new LaptopDTO(laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTXT_DOMAIN);
+                                        LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTXT_DOMAIN);
                                         listProduct.add(dto);
                                     }
 

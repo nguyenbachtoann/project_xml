@@ -5,26 +5,34 @@
  */
 package toannb.crawlers;
 
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.XMLConstants;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 import toannb.constant.AppConstants;
 import toannb.dao.LapTopDAO;
 import toannb.dto.LaptopDTO;
+import toannb.dto.LaptopDTOList;
 import toannb.listener.MyContextListener;
+import toannb.utils.XMLUtilities;
 
 /**
  *
  * @author bachtoan
  */
 public class CrawlerMaster {
-
-    public static void main(String[] args) {
-        crawlData();
-
-    }
 
     public static void crawlData() {
         LapTopXachTayCrawler ltxtCrawler = new LapTopXachTayCrawler();
@@ -42,10 +50,17 @@ public class CrawlerMaster {
         for (int i = 0; i < lastPage; i++) {
 
             List<LaptopDTO> laptopList = ltxtCrawler.getListProductEachPage(AppConstants.LTXT_HOME_URL, i + 1, AppConstants.LTXT_BEGIN_TAG, AppConstants.LTXT_END_TAG);
+            LaptopDTOList laptopDTOList = new LaptopDTOList();
+            laptopDTOList.setLaptop(laptopList);
 
+            String xmlString = XMLUtilities.marshallingToString(laptopDTOList);
+            boolean validated = validateXMLToInsertDB(xmlString, "web/schemas/laptopSchema.xsd");
             try {
 
-                dao.insert(laptopList);
+                if (validated == true) {
+                    dao.insert(laptopList);
+                }
+
             } catch (Exception e) {
                 Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -59,9 +74,18 @@ public class CrawlerMaster {
 
         for (int i = 0; i < urlList.size(); i++) {
             List<LaptopDTO> laptopList = ltpcCrawler.getListProductEachBrand(AppConstants.LTPC_HOME_BASE_URL, urlList.get(i), AppConstants.LTPC_BEGIN_TAG, AppConstants.LTPC_END_TAG);
-            try {
 
-                dao.insert(laptopList);
+            LaptopDTOList laptopDTOList = new LaptopDTOList();
+            laptopDTOList.setLaptop(laptopList);
+
+            String xmlString = XMLUtilities.marshallingToString(laptopDTOList);
+            boolean validated = validateXMLToInsertDB(xmlString, "web/schemas/laptopSchema.xsd");
+
+            try {
+                if (validated == true) {
+                    dao.insert(laptopList);
+                }
+
             } catch (Exception e) {
                 Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -73,5 +97,25 @@ public class CrawlerMaster {
             Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
         }
 
+    }
+
+    private static boolean validateXMLToInsertDB(String xmlString, String schemaFilePath) {
+        try {
+            SchemaFactory sFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sFactory.newSchema(new File(schemaFilePath));
+            Validator validator = schema.newValidator();
+            InputSource inputSource = new InputSource(new StringReader(xmlString));
+            validator.validate(new SAXSource(inputSource));
+
+            return true;
+        } catch (SAXException e) {
+            Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
+        } catch (FileNotFoundException e) {
+            Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
+        } catch (IOException e) {
+            Logger.getLogger(MyContextListener.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        return false;
     }
 }

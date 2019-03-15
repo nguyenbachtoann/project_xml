@@ -7,10 +7,13 @@ package toannb.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+
 import javax.xml.bind.JAXBContext;
+
 import javax.xml.bind.Marshaller;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -23,7 +26,7 @@ import toannb.dto.LaptopDTOList;
  * @author bachtoan
  */
 public class XMLUtilities implements Serializable {
-    
+
     public static XMLStreamReader parseInputStreamToStAXCursor(String i) throws XMLStreamException {
         InputStream is = new ByteArrayInputStream(i.getBytes(StandardCharsets.UTF_8));
         XMLInputFactory factory = XMLInputFactory.newInstance();
@@ -62,21 +65,38 @@ public class XMLUtilities implements Serializable {
 
         return null;
     }
-    
-    public static String marshallingToString(LaptopDTOList laptops){
+
+    public static String marshallingToString(LaptopDTOList laptops) {
         try {
             JAXBContext jaxb = JAXBContext.newInstance(LaptopDTOList.class);
             Marshaller mar = jaxb.createMarshaller();
             mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             mar.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-            
+
             StringWriter sw = new StringWriter();
             mar.marshal(laptops, sw);
-            
+
             return sw.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
+    
+    public static void marshallingToTransfer(LaptopDTOList laptops, OutputStream os) {
+        try {
+
+            JAXBContext jaxb = JAXBContext.newInstance(LaptopDTOList.class);
+            Marshaller mar = jaxb.createMarshaller();
+            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            mar.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+
+            mar.marshal(laptops, os);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

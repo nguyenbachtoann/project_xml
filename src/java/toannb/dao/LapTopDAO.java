@@ -73,7 +73,7 @@ public class LapTopDAO implements Serializable {
                 laptopImageURL = rs.getString("laptopImageURL");
                 laptopDescription = rs.getString("laptopDescription");
                 laptopDomain = rs.getString("laptopDomain");
-                laptopImageURL = laptopImageURL.replace("web\\", "");
+                laptopImageURL = laptopImageURL.replace("web/", "");
                 LaptopDTO dto = new LaptopDTO(Integer.toString(laptopId), laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain);
                 laptopList.getLaptop().add(dto);
             }
@@ -109,7 +109,7 @@ public class LapTopDAO implements Serializable {
                 laptopImageURL = rs.getString("laptopImageURL");
                 laptopDescription = rs.getString("laptopDescription");
                 laptopDomain = rs.getString("laptopDomain");
-                laptopImageURL = laptopImageURL.replace("web\\", "");
+                laptopImageURL = laptopImageURL.replace("web/", "");
                 LaptopDTO dto = new LaptopDTO(Integer.toString(laptopId), laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain);
                 laptopList.getLaptop().add(dto);
             }
@@ -146,7 +146,7 @@ public class LapTopDAO implements Serializable {
                 laptopImageURL = rs.getString("laptopImageURL");
                 laptopDescription = rs.getString("laptopDescription");
                 laptopDomain = rs.getString("laptopDomain");
-                laptopImageURL = laptopImageURL.replace("web\\", "");
+                laptopImageURL = laptopImageURL.replace("web/", "");
                 LaptopDTO dto = new LaptopDTO(Integer.toString(laptopId), laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain);
                 laptopList.getLaptop().add(dto);
             }
@@ -217,7 +217,7 @@ public class LapTopDAO implements Serializable {
             preStm = con.prepareStatement(sql);
             con.setAutoCommit(false);
             for (int i = 0; i < list.size(); i++) {
-                preStm.setString(1, "web\\images\\" + AppConstants.LAPTOP_IMAGE_PREFIX + list.get(i).getLaptopId() + AppConstants.LAPTOP_IMAGE_FORMAT);
+                preStm.setString(1, "web/images/" + AppConstants.LAPTOP_IMAGE_PREFIX + list.get(i).getLaptopId() + AppConstants.LAPTOP_IMAGE_FORMAT);
                 preStm.setString(2, list.get(i).getLaptopId());
                 preStm.addBatch();
             }
@@ -231,7 +231,7 @@ public class LapTopDAO implements Serializable {
                 String laptopImage = list.get(i).getLaptopImageURL();
                 URL url = new URL(laptopImage);
                 BufferedImage img = ImageIO.read(url);
-                File file = new File("web\\images\\" + AppConstants.LAPTOP_IMAGE_PREFIX + list.get(i).getLaptopId() + AppConstants.LAPTOP_IMAGE_FORMAT);
+                File file = new File("web/images/" + AppConstants.LAPTOP_IMAGE_PREFIX + list.get(i).getLaptopId() + AppConstants.LAPTOP_IMAGE_FORMAT);
                 ImageIO.write(img, "jpg", file);
 
             }
@@ -248,7 +248,7 @@ public class LapTopDAO implements Serializable {
         try {
 
             String sql
-                    = "Insert into tbl_LapTop(laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain) values (?,?,?,?,?,?)";
+                    = "Insert into tbl_LapTop( laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain) values (?,?,?,?,?,?)";
             con = MyConnection.getMyConnection();
             preStm = con.prepareStatement(sql);
             con.setAutoCommit(false);

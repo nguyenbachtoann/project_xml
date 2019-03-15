@@ -16,15 +16,15 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author bachtoan
+ * @author bachtoan 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "laptop"
 })
-@XmlRootElement(name = "laptops")
+@XmlRootElement(name = "laptops", namespace = "https://xml.netbeans.org/schema/laptops")
 public class LaptopDTOList implements Serializable {
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private List<LaptopDTO> laptop;
 
     public List<LaptopDTO> getLaptop() {

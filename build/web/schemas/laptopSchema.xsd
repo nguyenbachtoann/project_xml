@@ -5,8 +5,28 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<xs:schema version="1.0"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="qualified">
-
-</xs:schema>
+<xsd:schema version="1.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="https://xml.netbeans.org/schema/laptops"
+            xmlns="https://xml.netbeans.org/schema/laptops"
+            elementFormDefault="qualified">
+    
+    <xsd:element name="laptops">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="laptop" type="laptopType" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="laptopType">
+        <xsd:sequence>
+            <xsd:element name="laptopId" type="xsd:string" />
+            <xsd:element name="laptopBrand" type="xsd:string" />
+            <xsd:element name="laptopNameInfo" type="xsd:string" />
+            <xsd:element name="laptopPrice" type="xsd:string" />
+            <xsd:element name="laptopImageURL" type="xsd:string" />
+            <xsd:element name="laptopDescription" type="xsd:string" />
+            <xsd:element name="laptopDomain" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

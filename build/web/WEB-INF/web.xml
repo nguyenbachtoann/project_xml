@@ -16,6 +16,10 @@
         <servlet-name>GetProductByBrandController</servlet-name>
         <servlet-class>toannb.controllers.GetProductByBrandController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetTop2BrandController</servlet-name>
+        <servlet-class>toannb.controllers.GetTop2BrandController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DispathController</servlet-name>
         <url-pattern>/DispathController</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>GetProductByBrandController</servlet-name>
         <url-pattern>/GetProductByBrandController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTop2BrandController</servlet-name>
+        <url-pattern>/GetTop2BrandController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
