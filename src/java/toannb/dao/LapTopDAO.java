@@ -22,6 +22,8 @@ import toannb.constant.AppConstants;
 import toannb.db.MyConnection;
 import toannb.dto.LaptopDTO;
 import toannb.dto.LaptopDTOList;
+import toannb.dto.TopBrandDTO;
+import toannb.dto.TopBrandDTOList;
 
 /**
  *
@@ -259,6 +261,36 @@ public class LapTopDAO implements Serializable {
                 preStm.setString(4, laptop.getLaptopImageURL());
                 preStm.setString(5, laptop.getLaptopDescription());
                 preStm.setString(6, laptop.getLaptopDomain());
+                preStm.addBatch();
+            }
+            preStm.executeBatch();
+            con.commit();
+
+        } catch (Exception e) {
+            Logger.getLogger(LapTopDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            closeConnection();
+        }
+    }
+
+    
+    public void insertTopBrand(TopBrandDTOList dtoList) throws SQLException, ClassNotFoundException, Exception {
+
+        try {
+
+            String sql
+                    = "Insert into tbl_LaptopBrandTrending( laptopTrendBrand, laptopTrendReviews, laptopTrendDesign, laptopTrendSW, laptopTrendInnovation, laptopTrendIVS, laptopTrendOverall) values (?,?,?,?,?,?,?)";
+            con = MyConnection.getMyConnection();
+            preStm = con.prepareStatement(sql);
+            con.setAutoCommit(false);
+            for (TopBrandDTO laptop : dtoList.getListBrand()) {
+                preStm.setString(1, laptop.getLaptopTrendBrand());
+                preStm.setString(2, laptop.getLaptopTrendReviews());
+                preStm.setString(3, laptop.getLaptopTrendDesign());
+                preStm.setString(4, laptop.getLaptopTrendSW());
+                preStm.setString(5, laptop.getLaptopTrendInnovation());
+                preStm.setString(6, laptop.getLaptopTrendIVS());
+                preStm.setString(7, laptop.getLaptopTrendOverall());
                 preStm.addBatch();
             }
             preStm.executeBatch();
