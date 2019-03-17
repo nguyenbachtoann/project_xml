@@ -196,6 +196,43 @@ public class LapTopDAO implements Serializable {
 
     }
 
+    public LaptopDTOList getLaptopByCompare(String comapreString, String price) throws SQLException, Exception {
+
+        try {
+            String sql = "Select laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain from tbl_LapTop where laptopDescription  LIKE ? and laptopPrice > ? order by len(laptopPrice), laptopPrice asc";
+            con = MyConnection.getMyConnection();
+            preStm = con.prepareStatement(sql);
+            preStm.setString(1, "%" + comapreString + "%");
+            preStm.setString(2, price);
+            rs = preStm.executeQuery();
+            int laptopId = 0;
+            String laptopBrand = null;
+            String laptopNameInfo = null;
+            String laptopPrice = null;
+            String laptopDescription = null;
+            String laptopImageURL = null;
+            String laptopDomain = null;
+            laptopList = new LaptopDTOList();
+            while (rs.next()) {
+                laptopId = rs.getInt("laptopId");
+                laptopBrand = rs.getString("laptopBrand");
+                laptopNameInfo = rs.getString("laptopNameInfo");
+                laptopPrice = rs.getString("laptopPrice");
+                laptopImageURL = rs.getString("laptopImageURL");
+                laptopDescription = rs.getString("laptopDescription");
+                laptopDomain = rs.getString("laptopDomain");
+                laptopImageURL = laptopImageURL.replace("web/", "");
+                LaptopDTO dto = new LaptopDTO(Integer.toString(laptopId), laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain);
+                laptopList.getLaptop().add(dto);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(LapTopDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            closeConnection();
+        }
+        return laptopList;
+    }
+
     public List<String> getLaptopBrand() throws SQLException, Exception {
         List<String> listBrand = null;
         try {

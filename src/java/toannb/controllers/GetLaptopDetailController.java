@@ -7,6 +7,7 @@ package toannb.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -46,12 +47,21 @@ public class GetLaptopDetailController extends HttpServlet {
             LapTopDAO laptopDAO = new LapTopDAO();
             LaptopDTOList laptopList = new LaptopDTOList();
             laptopList = laptopDAO.getLaptopByID(laptopId);
-            response.reset();
-            XMLUtilities.marshallingToTransfer(laptopList, response.getOutputStream());
+
+            String description = laptopList.getLaptop().get(0).getLaptopDescription();
+            StringTokenizer cpu = new StringTokenizer(description, "-");
+
+            String price = laptopList.getLaptop().get(0).getLaptopPrice();
+            
+            String compareString = cpu.nextToken();
+
+            request.setAttribute("LAPTOPDETAIL", laptopList.getLaptop());
+            request.setAttribute("COMPARESTRING", compareString);
+            request.setAttribute("COMPAREPRICE", price);
 
         } catch (Exception e) {
             Logger.getLogger(GetLaptopDetailController.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

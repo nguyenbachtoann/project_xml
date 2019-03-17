@@ -33,10 +33,9 @@
                    <div  class="laptop_list_item" id="{l:laptopId}">
                   
                         <div class="laptop_image" >
-                            <a href="laptop_detail.jsp" onclick="getDetailWithCompare('GetLaptopDetailController','stylesheetXSL/laptopDetailXSL.xsl','{l:laptopId}')">
+ 
                                 <img src="{l:laptopImageURL}" />
-                            </a>
-                                
+
                         </div>
                         <div class="laptop_brand">
                             <xsl:value-of select="l:laptopBrand" />
@@ -52,9 +51,9 @@
                             <xsl:value-of select="l:laptopDescription" />
                         </div>
                         
-                        <div>
+                        <div class="div_button_detail">
                             <form action="DispathController" method="POST">
-                                <button class="button_detail" name="action" value="Chi Tiết"></button>
+                                <button class="button_detail" name="action" value="Detail">Chi Tiết</button>
                                 <input type="hidden" name="laptopId" value="{l:laptopId}"/>
                             </form>
                         </div>

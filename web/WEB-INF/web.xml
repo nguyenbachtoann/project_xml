@@ -32,6 +32,10 @@
         <servlet-name>GetLaptopDetailController</servlet-name>
         <servlet-class>toannb.controllers.GetLaptopDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetLaptopWithComapreController</servlet-name>
+        <servlet-class>toannb.controllers.GetLaptopWithComapreController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DispathController</servlet-name>
         <url-pattern>/DispathController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>GetLaptopDetailController</servlet-name>
         <url-pattern>/GetLaptopDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLaptopWithComapreController</servlet-name>
+        <url-pattern>/GetLaptopWithComapreController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

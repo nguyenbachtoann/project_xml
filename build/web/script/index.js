@@ -151,11 +151,4 @@ function changeImageSlash() {
 
 
 
-function getDetailWithCompare(servletUrl, xslUrl, laptopId) {
-    
-    alert(laptopId);
-    let newServletUrl = servletUrl + "?laptopId=" + laptopId;
-    loadXMLDom(newServletUrl, xslUrl, laptopId);
-}
-
 

@@ -1,0 +1,160 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 17, 2019, 6:41:59 PM
+    Author     : bachtoan
+*/
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #fafafa;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+.web_header {
+    text-align: center;
+
+}
+#detail_page_display{
+    width: fit-content;
+    height: auto;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    background: white ;
+    display: flex;
+}
+
+
+.laptop_detail_image{
+    float: left;
+    width: calc((100% / 3) - 10px);
+    height: auto;
+    object-fit: contain;
+}
+
+.laptop_detail_content{
+    text-align: center;
+    width: calc((100% / 2) - 10px);
+    float: left;
+    margin-left: 12vh;
+}
+
+
+.detail_page_body{
+    margin-top: 10vh;
+}
+
+.laptop_detail_brand{
+    font-size: 30px;
+
+    padding:10px;
+}
+
+.laptop_detail_nameinfo{
+    font-size: 30px;
+    padding:10px;
+}
+
+.laptop_detail_price{
+    color: red;
+    font-size: 25px;
+    padding:10px;
+}
+.laptop_detail_description{
+    padding:10px;
+    line-height: 30px;
+}
+
+.laptop_detail_domain{
+    padding:10px;
+}
+
+
+.compared_list_item{
+    width: 100%;
+    height: auto;
+}
+
+/*
+     compare
+*/
+#title_compared_div{
+    width: 100%;
+    height: 50px;
+    float: right;
+    margin-top: 10vh;
+}
+h3{
+
+    margin-left: 5vh;
+}
+
+.compared_laptop_image{
+
+    margin-left: 5vh;
+
+
+}
+
+.compared_laptop_content{
+    width: 70%;
+
+    margin-left: 5vh;
+    height: auto;
+
+}
+
+.compared_laptop_brand{
+    font-size: 17px;
+    padding:5px;
+}
+
+.compared_laptop_name_info{
+    font-size: 17px;
+    padding:5px;
+}
+
+.compared_laptop_price{
+    color: red;
+    font-size: 17px;
+    padding:5px;
+}
+
+.compared_laptop_description{
+    padding:5px;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+.compared_laptop_domain{
+    padding:5px;
+    font-size: 15px;
+}
+.compared_laptop_domain a{
+    text-decoration: none;
+}
+
+table {
+    background: white !important;
+    margin-left: 5vh;
+    width: calc(100% - 10vh);
+}
+
+table td{
+    background: white !important;
+    margin-left: 5vh;
+    width: calc(100% - 10vh);
+     border-bottom: 1px solid silver;
+}
+.td_detail{
+    width: 20vh;
+   
+}
+
+

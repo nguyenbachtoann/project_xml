@@ -38,27 +38,27 @@ public class GetAllProductPagingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-//            /* TODO output your page here. You may use following sample code. */
-//            //            String pageNum = request.getParameter("pageNum");
-////            
-//            PagingGeneration paging = new PagingGeneration();
-//            int pagingCount = paging.PaginationCount();
-//            LaptopDTOList laptopList = new LaptopDTOList();
+            /* TODO output your page here. You may use following sample code. */
+            //            String pageNum = request.getParameter("pageNum");
+//            
+            PagingGeneration paging = new PagingGeneration();
+            int pagingCount = paging.PaginationCount();
+            LaptopDTOList laptopList = new LaptopDTOList();
+
+//            if(pageNum != null){
+//                laptopList = paging.paginEachPage(pageNum);
+//            }else{
+//               laptopList = paging.paginEachPage("1");
+//            }
+            request.setAttribute("PAGINGCOUNT", Integer.toString(pagingCount));
+//            response.reset();
+//            XMLUtilities.marshallingToTransfer(laptopList, response.getOutputStream());
+
+//            LapTopDAO laptopDAO = new LapTopDAO();
 //
-////            if(pageNum != null){
-////                laptopList = paging.paginEachPage(pageNum);
-////            }else{
-////               laptopList = paging.paginEachPage("1");
-////            }
-//            request.setAttribute("PAGINGCOUNT", Integer.toString(pagingCount));
-////            response.reset();
-////            XMLUtilities.marshallingToTransfer(laptopList, response.getOutputStream());
-
-            LapTopDAO laptopDAO = new LapTopDAO();
-
-            LaptopDTOList laptopList = laptopDAO.getAllLaptop();
-            response.reset();
-            XMLUtilities.marshallingToTransfer(laptopList, response.getOutputStream());
+//            LaptopDTOList laptopList = laptopDAO.getAllLaptop();
+//            response.reset();
+//            XMLUtilities.marshallingToTransfer(laptopList, response.getOutputStream());
 
         } catch (Exception e) {
             Logger.getLogger(GetAllProductPagingController.class.getName()).log(Level.SEVERE, null, e);

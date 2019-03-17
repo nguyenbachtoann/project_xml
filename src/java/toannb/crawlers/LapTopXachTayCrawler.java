@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -129,6 +130,8 @@ public class LapTopXachTayCrawler {
                                 if (reader.isCharacters()) {
                                     if (!reader.getText().contains("Trả góp")) {
                                         laptopDescription = reader.getText();
+                                        String result = laptopDescription.replaceFirst(Pattern.quote("-"), " ");
+                                        laptopDescription = result;
                                         LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand.toUpperCase(), laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTXT_DOMAIN);
                                         listProduct.add(dto);
                                     }

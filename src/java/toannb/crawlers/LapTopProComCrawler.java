@@ -111,8 +111,25 @@ public class LapTopProComCrawler {
 
                             laptopBrand = st.nextToken();
 
-                            laptopDescription = laptopNameInfo;
+                            //replace - and then replace with , with -
+                            String noCross = laptopNameInfo.replaceAll("-", " ");
+                            laptopDescription = noCross.replaceAll(",", "-");
 
+                            //delete name and product code in description
+                            String newDescription = "";
+
+                            String[] tokens = laptopDescription.split("-");
+                            for (int i = 1; i < tokens.length; i++) {
+                                if(i < tokens.length){
+                                    newDescription += tokens[i] + "-";
+                                }else{
+                                    newDescription += tokens[i];
+                                }
+                                
+                                
+                            }
+
+                            laptopDescription = newDescription;
                             reader.nextTag();
 
                         }

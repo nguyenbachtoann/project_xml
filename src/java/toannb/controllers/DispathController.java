@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DispathController extends HttpServlet {
 
     private static final String ERROR_PAGE = "error.jsp";
-
+    private static final String GET_DETAIL_CONTROLLER = "GetLaptopDetailController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +37,11 @@ public class DispathController extends HttpServlet {
         String url = ERROR_PAGE;
         try {
             String action = request.getParameter("action");
-//            if (action.equals("Crawl Data")) {
-//                url = CRAWL_DATA_CONTROLLER;
-//            } else {
-//                request.setAttribute("ERROR", "Action is not support!");
-//            }
+            if (action.equals("Detail")) {
+                url = GET_DETAIL_CONTROLLER;
+            } else {
+                request.setAttribute("ERROR", "Action is not support!");
+            }
 
         } catch (Exception e) {
             log("ERROR at DispathController: " + e.getMessage());

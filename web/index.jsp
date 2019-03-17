@@ -17,6 +17,20 @@
         <title>NICE LAPTOP HOME</title>
 
         <style>
+
+            .button_detail {
+                background-color: #4169E1; /* Green */
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+
+            }
+
+
             .dropbtn {
                 background-color:#4169E1;
                 color: white;
@@ -63,7 +77,7 @@
     <body onload="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', '')">
         <div class="topnav">
             <a class="active" href="index.jsp" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', ' ')">Home</a>
-            <a href="index.jsp" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', 'a')">About</a>
+            <a href="#about">About</a>
             <a href="#contact">Contact</a>
             <div class="search-container">
                 <input type="text" id="btnSearch" placeholder="Search.." name="laptopId" value=""> 
