@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author bachtoan 
+ * @author bachtoan
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -24,11 +24,22 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlRootElement(name = "laptops", namespace = "https://xml.netbeans.org/schema/laptops")
 public class LaptopDTOList implements Serializable {
+
     @XmlElement(required = true, namespace = "https://xml.netbeans.org/schema/laptops")
     private List<LaptopDTO> laptop;
 
+    
+    
     public List<LaptopDTO> getLaptop() {
-        if(laptop == null){
+        if (laptop == null) {
+            laptop = new ArrayList<LaptopDTO>();
+        }
+        return laptop;
+    }
+    
+    
+     public List<LaptopDTO> getLaptoppagination() {
+        if (laptop == null) {
             laptop = new ArrayList<LaptopDTO>();
         }
         return laptop;

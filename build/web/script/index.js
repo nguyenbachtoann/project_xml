@@ -8,7 +8,7 @@
 var xmlHttp;
 var xmlResponse;
 var xslResponse;
-//function checkLocalStorage(controllerURL) {
+//function checkLocalStorageListBrand(controllerURL) {
 //
 //    let xmlDOM = null;
 //    if (!localStorage.getItem("LAPTOPLIST")) {
@@ -37,7 +37,7 @@ function GetXmlHttpObject() {
 
 
 
-function loadXSLDom(xslUrl)
+function loadXSLDom(xslUrl, searchValue)
 {
 
     xmlHttp = GetXmlHttpObject();
@@ -54,7 +54,7 @@ function loadXSLDom(xslUrl)
 
             xslResponse = xmlHttp.responseXML;
             if (xslResponse != null) {
-                applyXSLT(xmlResponse, xslResponse);
+                applyXSLT(xmlResponse, xslResponse, searchValue);
             }
 
         }
@@ -64,7 +64,7 @@ function loadXSLDom(xslUrl)
 
 }
 
-function loadXMLDom(servletUrl, xslUrl) {
+function loadXMLDom(servletUrl, xslUrl, searchValue) {
     xmlHttp = GetXmlHttpObject();
     if (!xmlHttp) {
         alert("Your browser does not support AJAX!");
@@ -78,7 +78,7 @@ function loadXMLDom(servletUrl, xslUrl) {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             xmlResponse = xmlHttp.responseXML;
             if (xmlResponse != null) {
-                loadXSLDom(xslUrl);
+                loadXSLDom(xslUrl, searchValue);
             }
         }
     };
@@ -86,13 +86,30 @@ function loadXMLDom(servletUrl, xslUrl) {
 }
 
 
-function applyXSLTForList(servletUrl, xslUrl) {
-    loadXMLDom(servletUrl, xslUrl);
+
+
+
+function applyXSLTForList(servletUrl, xslUrl, searchValue) {
+    
+    let localSearch = localStorage.getItem('SEARCHVALUE');
+    if (localSearch === null || localSearch === "") {
+        localSearch = searchValue;
+        localStorage.setItem('SEARCHVALUE', searchValue);
+        loadXMLDom(servletUrl, xslUrl, searchValue);
+    } else if (!localSearch.includes(searchValue) && searchValue !== "") {
+        localSearch = searchValue;
+        localStorage.setItem('SEARCHVALUE', searchValue);
+        loadXMLDom(servletUrl, xslUrl, searchValue);
+    } else {
+        localSearch = localStorage.getItem('SEARCHVALUE');
+        loadXMLDom(servletUrl, xslUrl, localSearch);
+    }
+
 }
 
 
 
-function applyXSLT(xmlResponse, xslResponse) {
+function applyXSLT(xmlResponse, xslResponse, searchValue) {
 
     if (window.ActiveXObject || xmlHttp.responseType == "msxml-document")
     {
@@ -104,6 +121,8 @@ function applyXSLT(xmlResponse, xslResponse) {
     {
         xsltProcessor = new XSLTProcessor();
         xsltProcessor.importStylesheet(xslResponse);
+        xsltProcessor.setParameter(null, "searchValue", searchValue.toUpperCase());
+        document.getElementById("laptop_list_content").innerHTML = "";
         resultDocument = xsltProcessor.transformToFragment(xmlResponse, document);
         document.getElementById("laptop_list_content").appendChild(resultDocument);
         changeImageSlash();
@@ -116,17 +135,27 @@ function applyXSLT(xmlResponse, xslResponse) {
 
 function changeImageSlash() {
     var images = document.getElementsByTagName('img');
-    debugger;
+ 
     for (var i = 0; i < images.length; i++)
     {
         var img = images[i];
 
-        if (img.src.length == 0 && (img.src !== 'ICON/magnifying_glass.png' ))
+        if (img.src.length == 0 && (img.src !== 'ICON/magnifying_glass.png'))
         {
             img.src = img.src.split('%5C').join('/');
-           
+
         }
     }
+}
+
+
+
+
+function getDetailWithCompare(servletUrl, xslUrl, laptopId) {
+    
+    alert(laptopId);
+    let newServletUrl = servletUrl + "?laptopId=" + laptopId;
+    loadXMLDom(newServletUrl, xslUrl, laptopId);
 }
 
 

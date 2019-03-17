@@ -60,23 +60,23 @@
         </style>
     </head>
 
-    <body onload="applyXSLTForList('GetTop2BrandController', 'stylesheetXSL/laptopListStyle.xsl')">
+    <body onload="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', '')">
         <div class="topnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#about">About</a>
+            <a class="active" href="index.jsp" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', ' ')">Home</a>
+            <a href="index.jsp" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', 'a')">About</a>
             <a href="#contact">Contact</a>
             <div class="search-container">
-                <form action="">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><img class="imgSearch" src="ICON/magnifying_glass.png" /></button>
-                </form>
+                <input type="text" id="btnSearch" placeholder="Search.." name="laptopId" value=""> 
+                <button type="button" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', document.getElementById('btnSearch').value)">
+                    <img class="imgSearch" src="ICON/magnifying_glass.png" />
+                </button>
             </div>
         </div>
         <div class="web_header">
             <h1 class="h1_web_brand"> NICE LAPTOP </h1>
         </div>
 
-        <div class="web_body">
+        <div class="web_body" >
             <div id="options">
 
                 <div class="brand_option">
@@ -86,7 +86,7 @@
                             <c:set var="brandList" value="${requestScope.BRANDLIST}"/>
                             <c:if test="${not empty brandList}">
                                 <c:forEach var="brand" items="${brandList}">
-                                    <a href="#">${brand}</a>
+                                    <a href="#" onclick="applyXSLTForList('GetAllProductPagingController', 'stylesheetXSL/laptopListStyle.xsl', '${brand}')">${brand}</a>
                                 </c:forEach>
 
                             </c:if>                   
@@ -97,6 +97,16 @@
             <div id="laptop_list_content">
 
             </div>
+            <div>       
+                <c:set var="pagingCount" value="${requestScope.PAGINGCOUNT}"/>
+                <c:if test="${not empty pagingCount}">
+                    <c:forEach var="page" items="${pagingCount}">
+                        <a href="#">${count}</a>
+                    </c:forEach>
+
+                </c:if>   
+            </div>         
+
 
         </div>
     </body>

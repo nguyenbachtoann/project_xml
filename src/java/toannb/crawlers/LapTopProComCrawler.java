@@ -126,7 +126,7 @@ public class LapTopProComCrawler {
                                     if (laptopPrice.contains("VNĐ")) {
                                         laptopPrice = laptopPrice.replaceAll("VNĐ", "");
                                     }
-                                    LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTPC_HOME_BASE_URL);
+                                    LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand.toUpperCase(), laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTPC_HOME_BASE_URL);
                                     listProduct.add(dto);
                                 }
 

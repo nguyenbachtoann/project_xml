@@ -129,7 +129,7 @@ public class LapTopXachTayCrawler {
                                 if (reader.isCharacters()) {
                                     if (!reader.getText().contains("Trả góp")) {
                                         laptopDescription = reader.getText();
-                                        LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTXT_DOMAIN);
+                                        LaptopDTO dto = new LaptopDTO(laptopId, laptopBrand.toUpperCase(), laptopNameInfo, laptopPrice, laptopImg, laptopDescription, AppConstants.LTXT_DOMAIN);
                                         listProduct.add(dto);
                                     }
 

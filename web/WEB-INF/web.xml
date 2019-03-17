@@ -14,11 +14,23 @@
     </servlet>
     <servlet>
         <servlet-name>GetProductByBrandController</servlet-name>
-        <servlet-class>toannb.controllers.GetProductByBrandController</servlet-class>
+        <servlet-class>toannb.controllers.GetProductPagingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetTop2BrandController</servlet-name>
         <servlet-class>toannb.controllers.GetTop2BrandController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAllProductController</servlet-name>
+        <servlet-class>toannb.controllers.GetAllProductPagingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAllProductPagingController</servlet-name>
+        <servlet-class>toannb.controllers.GetAllProductPagingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLaptopDetailController</servlet-name>
+        <servlet-class>toannb.controllers.GetLaptopDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DispathController</servlet-name>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>GetTop2BrandController</servlet-name>
         <url-pattern>/GetTop2BrandController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAllProductController</servlet-name>
+        <url-pattern>/GetAllProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAllProductPagingController</servlet-name>
+        <url-pattern>/GetAllProductPagingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLaptopDetailController</servlet-name>
+        <url-pattern>/GetLaptopDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

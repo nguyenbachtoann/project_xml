@@ -124,6 +124,41 @@ public class LapTopDAO implements Serializable {
 
     }
 
+    public LaptopDTOList getLaptopByID(String laptopSearchId) throws SQLException, Exception {
+
+        try {
+            String sql = "Select laptopId, laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain from tbl_LapTop where laptopId = " + laptopSearchId;
+            con = MyConnection.getMyConnection();
+            preStm = con.prepareStatement(sql);
+            rs = preStm.executeQuery();
+            int laptopId = 0;
+            String laptopBrand = null;
+            String laptopNameInfo = null;
+            String laptopPrice = null;
+            String laptopDescription = null;
+            String laptopImageURL = null;
+            String laptopDomain = null;
+            laptopList = new LaptopDTOList();
+            while (rs.next()) {
+                laptopId = rs.getInt("laptopId");
+                laptopBrand = rs.getString("laptopBrand");
+                laptopNameInfo = rs.getString("laptopNameInfo");
+                laptopPrice = rs.getString("laptopPrice");
+                laptopImageURL = rs.getString("laptopImageURL");
+                laptopDescription = rs.getString("laptopDescription");
+                laptopDomain = rs.getString("laptopDomain");
+                laptopImageURL = laptopImageURL.replace("web/", "");
+                LaptopDTO dto = new LaptopDTO(Integer.toString(laptopId), laptopBrand, laptopNameInfo, laptopPrice, laptopImageURL, laptopDescription, laptopDomain);
+                laptopList.getLaptop().add(dto);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(LapTopDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            closeConnection();
+        }
+        return laptopList;
+    }
+
     public LaptopDTOList getLaptopLIKEBrand(String brandSearch) throws SQLException, Exception {
 
         try {
@@ -273,7 +308,6 @@ public class LapTopDAO implements Serializable {
         }
     }
 
-    
     public void insertTopBrand(TopBrandDTOList dtoList) throws SQLException, ClassNotFoundException, Exception {
 
         try {
